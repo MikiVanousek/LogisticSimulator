@@ -6,6 +6,8 @@ class Vector:
         self.x = x
         self.y = y
 
+    def plus(self, anotherVector):
+        return Vector(self.x + anotherVector.x, self.y + anotherVector.y)
 
 class Road:
     def __init__(self, startVector, roadVector):
