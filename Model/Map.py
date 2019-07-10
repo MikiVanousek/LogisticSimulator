@@ -18,7 +18,7 @@ class Map:
     roads = []
 
     def __init__(self, w, h):
-        size = Vector(w, h)
+        self.size = Vector(w, h)
         self.fillWithRoads()
 
     def fillWithRoads(self):
@@ -41,3 +41,5 @@ class Map:
 
 class Car:
     def __init__(self):
+        self.x = 0
+        self.y = 0
