@@ -1,17 +1,16 @@
 from tkinter import *
 from Model.Map import *
-
-canvas_width = 1500
-canvas_height = 900
+basic_size = 30
+road_size = 5
+background_color='#33a300'
+road_color='#455862'
 
 master = Tk()
 
-w = Canvas(master, 
-           width=canvas_width, 
-           height=canvas_height)
-w.pack()
-w.create_rectangle(50, 50, 200, 100, fill='#476042')
-w.create_line(0, canvas_height/2, canvas_width, canvas_height/2)
-mainloop()
 
 def draw(self, map):
+    canvas = Canvas(master, width=map.size.x * basic_size, height=map.size.y * basic_size)
+    canvas.configure(background=background_color)
+    canvas.pack()
+    for road in map.roads:
+        canvas.create_rectangle(road.start.x, road.start.y, road.road.x, road.road.y, fill=road_color)
