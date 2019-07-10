@@ -1,3 +1,5 @@
+import random
+
 class Vector:
     x = 0
     y = 0
@@ -10,38 +12,45 @@ class Vector:
         return Vector(self.x + anotherVector.x, self.y + anotherVector.y)
 
 class Road:
-    def __init__(self, startVector, roadVector):
-        self.start = startVector
-        self.road = roadVector
+    def __init__(self, start, end):
+        self.start = start
+        self.end = end
 
+
+class Car:
+    def __init__(self, position):
+        self.position = position
+
+
+class Package:
+    def __init__(self, position, destinatino):
+        self.position = position
+        self.destination = destinatino
 
 class Map:
-    size = Vector(0, 0)
-    roads = []
-
     def __init__(self, w, h):
         self.size = Vector(w, h)
+        self.car = Car(self.getRandomVectorOnMap())
+        self.packages = []
+        self.roads = []
+
+
         self.fillWithRoads()
+
 
     def fillWithRoads(self):
         up = Vector(1, 0)
-        down = Vector(-1, 0)
         right = Vector(0, 1)
-        left = Vector(0, -1)
         for x in range(self.size.x):
             for y in range(self.size.y):
                 position = Vector(x, y)
-
                 if x != self.size.x:
-                    self.roads.append(Road(position, up))
-                if x != 0:
-                    self.roads.append(Road(position, down))
+                    self.roads.append(Road(position, position.plus(right)))
                 if y != self.size.y:
-                    self.roads.append(Road(position, right))
-                if y != 0:
-                    self.roads.append(Road(position, left))
+                    self.roads.append(Road(position, position.plus(up)))
 
-class Car:
-    def __init__(self):
-        self.x = 0
-        self.y = 0
+    def generatePackage(self):
+        self.packages.append(Package(self.getRandomVectorOnMap(), self.getRandomVectorOnMap()))
+
+    def getRandomVectorOnMap(self):
+        return Vector(random.randint(0, self.size.x), random.randint(0, self.size.y))

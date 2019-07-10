@@ -1,7 +1,7 @@
 from Model.Map import *
-import Visualizer
+from Visualizer import Visulaizer
 
 map = Map(10, 5)
-viz = Visualizer
-viz.draw(map)
+viz = Visulaizer(map)
+viz.upadte(map)
 
