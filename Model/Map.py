@@ -19,6 +19,7 @@ class Map:
 
     def __init__(self, w, h):
         size = Vector(w, h)
+        self.fillWithRoads()
 
     def fillWithRoads(self):
         up = Vector(1, 0)
@@ -38,3 +39,5 @@ class Map:
                 if y != 0:
                     self.roads.append(Road(position, left))
 
+class Car:
+    def __init__(self):
